@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Proyectos MAD blueEnergy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .search-section {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .search-box button {
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #5568d3;
+        }
+        
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .filters select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .stats {
+            padding: 20px 30px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            opacity: 0.9;
+        }
+        
+        .results {
+            padding: 30px;
+        }
+        
+        .results h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        
+        .project-card h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .project-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge-programa {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .badge-año {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .badge-estado {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .project-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .link-button {
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        
+        .link-button:hover {
+            background: #5568d3;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 2px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Biblioteca Virtual</h1>
+            <p>Proyectos MAD - blueEnergy Nicaragua</p>
+        </header>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar proyectos por nombre, código, descripción..." />
+                <button onclick="searchProjects()">🔍 Buscar</button>
+            </div>
+            
+            <div class="filters">
+                <select id="filterPrograma" onchange="applyFilters()">
+                    <option value="">Todos los Programas</option>
+                    <option value="ASH">ASH - Agua, Saneamiento e Higiene</option>
+                    <option value="SAN con Agro">SAN con Agro</option>
+                    <option value="Cambio Climático">Cambio Climático</option>
+                    <option value="Fortalecimiento Institucional">Fortalecimiento Institucional</option>
+                </select>
+                
+                <select id="filterAño" onchange="applyFilters()">
+                    <option value="">Todos los Años</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2013">2013</option>
+                    <option value="2011">2011</option>
+                </select>
+                
+                <select id="filterTematica" onchange="applyFilters()">
+                    <option value="">Todas las Temáticas</option>
+                    <option value="Filtros">Filtros</option>
+                    <option value="Pozos">Pozos</option>
+                    <option value="Capacitaciones">Capacitaciones</option>
+                    <option value="Huertos">Huertos Agroecológicos</option>
+                    <option value="Escuela Preparada">Escuela Preparada</option>
+                    <option value="Estudios">Estudios</option>
+                </select>
+                
+                <select id="filterEstado" onchange="applyFilters()">
+                    <option value="">Todos los Estados</option>
+                    <option value="Aprobada">Aprobados</option>
+                    <option value="No Aprobada">No Aprobados</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="stats" id="statsSection">
+            <div class="stat-card">
+                <h3 id="totalProyectos">-</h3>
+                <p>Proyectos Total</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalAprobados">-</h3>
+                <p>Proyectos Aprobados</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalPresupuesto">-</h3>
+                <p>Presupuesto Total (USD)</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalBeneficiarios">-</h3>
+                <p>Familias Beneficiadas</p>
+            </div>
+        </div>
+        
+        <div class="results">
+            <h2 id="resultsTitle">Todos los Proyectos</h2>
+            <div id="projectsContainer" class="project-grid">
+                <div class="loading">Cargando proyectos...</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 blueEnergy Nicaragua - Biblioteca Virtual de Proyectos MAD</p>
+            <p>Desarrollado con ❤️ para comunidades resilientes</p>
+        </footer>
+    </div>
+    
+    <script>
+        // REEMPLAZA ESTA URL CON LA URL DE TU GOOGLE APPS SCRIPT
+        const API_URL = 'https://script.google.com/a/macros/blueenergygroup.org/s/AKfycby9p9UeVMqMis5MsiIrLGjqKsB58vl8SaG7Fi7xR_6x9djAL-1gvX48REztU1Xaaw7jRw/exec';
+        
+        let allProjects = [];
+        let filteredProjects = [];
+        
+        // Cargar proyectos al inicio
+        window.onload = function() {
+            loadProjects();
+            loadStats();
+        };
+        
+        async function loadProjects() {
+            try {
+                const response = await fetch(`${API_URL}?action=getAll`);
+                allProjects = await response.json();
+                filteredProjects = allProjects;
+                displayProjects(filteredProjects);
+            } catch (error) {
+                console.error('Error cargando proyectos:', error);
+                document.getElementById('projectsContainer').innerHTML = 
+                    '<div class="no-results">Error cargando proyectos. Verifica la configuración.</div>';
+            }
+        }
+        
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_URL}?action=getStats`);
+                const stats = await response.json();
+                
+                document.getElementById('totalProyectos').textContent = stats.total_proyectos;
+                document.getElementById('totalAprobados').textContent = stats.total_aprobados;
+                document.getElementById('totalPresupuesto').textContent = 
+                    '$' + stats.total_presupuesto.toLocaleString();
+                // Calcular beneficiarios (esto lo puedes ajustar según tus datos)
+                document.getElementById('totalBeneficiarios').textContent = '5,000+';
+            } catch (error) {
+                console.error('Error cargando estadísticas:', error);
+            }
+        }
+        
+        function displayProjects(projects) {
+            const container = document.getElementById('projectsContainer');
+            
+            if (projects.length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron proyectos</div>';
+                return;
+            }
+            
+            container.innerHTML = projects.map(project => `
+                <div class="project-card" onclick="viewProject('${project.ID_Proyecto}')">
+                    <h3>${project.Codigo_MAD}: ${project.Nombre_Proyecto}</h3>
+                    <div class="project-meta">
+                        <span class="badge badge-programa">${project.Programa}</span>
+                        <span class="badge badge-año">${project.Año}</span>
+                        <span class="badge badge-estado">${project.Estado}</span>
+                    </div>
+                    <p class="project-description">
+                        <strong>Temática:</strong> ${project.Tematica}<br>
+                        <strong>Beneficiarios:</strong> ${project.Beneficiarios_Directos}<br>
+                        <strong>Presupuesto:</strong> $${parseFloat(project.Presupuesto_USD).toLocaleString()} USD
+                    </p>
+                    <div class="project-links">
+                        ${project.URL_Propuesta ? '<a href="' + project.URL_Propuesta + '" class="link-button" target="_blank" onclick="event.stopPropagation()">📄 Propuesta</a>' : ''}
+                        ${project.URL_Informe_Final ? '<a href="' + project.URL_Informe_Final + '" class="link-button" target="_blank" onclick="event.stopPropagation()">📊 Informe</a>' : ''}
+                        ${project.URL_Fotos ? '<a href="' + project.URL_Fotos + '" class="link-button" target="_blank" onclick="event.stopPropagation()">📸 Fotos</a>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function applyFilters() {
+            const programa = document.getElementById('filterPrograma').value;
+            const año = document.getElementById('filterAño').value;
+            const tematica = document.getElementById('filterTematica').value;
+            const estado = document.getElementById('filterEstado').value;
+            
+            filteredProjects = allProjects.filter(project => {
+                return (!programa || project.Programa === programa) &&
+                       (!año || project.Año == año) &&
+                       (!tematica || project.Tematica === tematica) &&
+                       (!estado || project.Estado === estado);
+            });
+            
+            document.getElementById('resultsTitle').textContent = 
+                `Resultados: ${filteredProjects.length} proyecto(s)`;
+            displayProjects(filteredProjects);
+        }
+        
+        function searchProjects() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!query) {
+                filteredProjects = allProjects;
+            } else {
+                filteredProjects = allProjects.filter(project => {
+                    return Object.values(project).some(value => 
+                        String(value).toLowerCase().includes(query)
+                    );
+                });
+            }
+            
+            document.getElementById('resultsTitle').textContent = 
+                `Resultados de búsqueda: ${filteredProjects.length} proyecto(s)`;
+            displayProjects(filteredProjects);
+        }
+        
+        // Buscar al presionar Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProjects();
+            }
+        });
+        
+        function viewProject(id) {
+            // Aquí puedes abrir un modal o redirigir a una página de detalles
+            alert('Ver detalles completos del proyecto ID: ' + id);
+            // window.location.href = 'proyecto.html?id=' + id;
+        }
+    </script>
+</body>
+</html>
