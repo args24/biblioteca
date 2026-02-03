@@ -301,10 +301,7 @@
                 <h3 id="totalAprobados">-</h3>
                 <p>Proyectos Aprobados</p>
             </div>
-             <div class="stat-card">
-                <h3 id="totalPresupuesto">-</h3>
-                <p>Presupuesto Total (USD)</p>
-            </div>
+             
             <div class="stat-card">
                 <h3 id="totalBeneficiarios">-</h3>
                 <p>Familias Beneficiadas</p>
@@ -357,8 +354,7 @@
                 
                 document.getElementById('totalProyectos').textContent = stats.total_proyectos;
                 document.getElementById('totalAprobados').textContent = stats.total_aprobados;
-                document.getElementById('totalPresupuesto').textContent = 
-                    '$' + stats.total_presupuesto.toLocaleString();
+                
                 // Calcular beneficiarios (esto lo puedes ajustar según tus datos)
                 document.getElementById('totalBeneficiarios').textContent = '5,000+';
             } catch (error) {
