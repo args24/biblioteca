@@ -288,4 +288,37 @@ window.addEventListener('load', () => {
     });
 });
 
+
+
+
+
+// ================================
+// TIMELINE
+// ================================
+
+
+
+
+  const section = document.querySelector('.timeline-section');
+  const items = document.querySelectorAll('.timeline-item');
+  const line = document.querySelector('.timeline-line');
+
+  const observer2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        line.style.width = '100%';
+
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('show');
+          }, index * 200);
+        });
+
+        observer2.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer2.observe(section);
+
 console.log('🌊 blueEnergy Landing Page loaded successfully!');
