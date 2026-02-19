@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hitos | blueEnergy</title>
+
+<style>
+:root{
+    --primary:#0a3d62;
+    --secondary:#1e90ff;
+    --light:#f4f7fb;
+    --text:#2f3640;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:white;
+    color:var(--text);
+    scroll-behavior:smooth;
+}
+
+.hero{
+    background:linear-gradient(135deg,var(--primary),#06304b);
+    color:white;
+    padding:120px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.hero p{
+    opacity:0.9;
+}
+
+/* TIMELINE */
+.timeline{
+    position:relative;
+    max-width:1100px;
+    margin:80px auto;
+    padding:0 20px;
+}
+
+.timeline::after{
+    content:'';
+    position:absolute;
+    width:4px;
+    background:var(--secondary);
+    top:0;
+    bottom:0;
+    left:50%;
+    margin-left:-2px;
+}
+
+.timeline-item{
+    padding:20px 40px;
+    position:relative;
+    width:50%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 0.8s ease;
+}
+
+.timeline-item.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.timeline-item.left{
+    left:0;
+}
+
+.timeline-item.right{
+    left:50%;
+}
+
+.timeline-item::after{
+    content:'';
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:white;
+    border:4px solid var(--secondary);
+    top:30px;
+    border-radius:50%;
+    z-index:1;
+}
+
+.timeline-item.left::after{
+    right:-11px;
+}
+
+.timeline-item.right::after{
+    left:-11px;
+}
+
+.timeline-content{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.timeline-content h3{
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+.timeline-content p{
+    margin-bottom:10px;
+}
+
+.timeline-content ul{
+    padding-left:20px;
+    margin-top:10px;
+}
+
+.timeline-content li{
+    margin-bottom:6px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .timeline::after{
+        left:20px;
+    }
+
+    .timeline-item{
+        width:100%;
+        padding-left:60px;
+        padding-right:20px;
+    }
+
+    .timeline-item.right{
+        left:0;
+    }
+
+    .timeline-item.left::after,
+    .timeline-item.right::after{
+        left:9px;
+    }
+}
+
+/* BOTÓN */
+#backToTop{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:var(--secondary);
+    color:white;
+    border:none;
+    padding:14px 18px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    display:none;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>21 años de historia</h1>
+    <p>La evolución de blueEnergy Nicaragua (2002–2025)</p>
+</section>
+
+<section class="timeline">
+
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <h3>2002–2004 | Nacimiento</h3>
+            <p>Mathias Craig gana concurso de emprendimiento social en MIT e impulsa electrificación rural.</p>
+            <p>Primer estudio de factibilidad (2003).</p>
+            <p>Inicio oficial de operaciones en 2004 en Bluefields.</p>
+            <ul>
+                <li>Primer acuerdo con INATEC, BICU y URACCAN</li>
+                <li>Equipo fundador consolidado</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="timeline-item right">
+        <div class="timeline-content">
+            <h3>2004–2007 | Estructuración</h3>
+            <p>Instalación de 9 sistemas energéticos en 6 comunidades.</p>
+            <ul>
+                <li>Turbinas eólicas tipo Piggott</li>
+                <li>1,500 personas beneficiadas</li>
+                <li>Transición hacia sistemas solares</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <h3>2007–2011 | Innovación</h3>
+            <p>Registro oficial como ONG internacional.</p>
+            <ul>
+                <li>Reconocimiento CNN Heroes</li>
+                <li>Energy Globe Awards</li>
+                <li>Fellowship Ashoka</li>
+            </ul>
+            <p>Lanzamiento del programa WaSH (2008).</p>
+            <p>Primeras letrinas ecológicas y cocinas mejoradas.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item right">
+        <div class="timeline-content">
+            <h3>2014–2018 | Expansión y liderazgo local</h3>
+            <ul>
+                <li>Nace programa de Seguridad Alimentaria</li>
+                <li>Permacultura y justicia climática</li>
+                <li>Reestructuración institucional (2018)</li>
+                <li>Liderazgo local consolidado</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <h3>2018–2025 | Consolidación e inclusión</h3>
+            <p>Programa de emprendimiento sostenible.</p>
+            <p>Enfoque en personas con discapacidad.</p>
+            <p>Fortalecimiento de Centros Comunitarios Adaptados al Cambio Climático.</p>
+        </div>
+    </div>
+
+</section>
+
+<button id="backToTop">↑</button>
+
+<script>
+// Animación al hacer scroll
+const items = document.querySelectorAll('.timeline-item');
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{threshold:0.2});
+
+items.forEach(item=>observer.observe(item));
+
+// Botón volver arriba
+const btn = document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+    btn.style.display = window.scrollY > 400 ? "block":"none";
+});
+
+btn.addEventListener("click",()=>{
+    window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Conocimiento e Impacto blueEnergy</title>
+
+<style>
+:root{
+    --primary:#0a3d62;
+    --secondary:#1e90ff;
+    --bg:#f4f7fb;
+    --text:#2f3640;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    scroll-behavior:smooth;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,var(--primary),#06304b);
+    color:white;
+    padding:100px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:2.5rem;
+    margin-bottom:15px;
+    animation:fadeDown 1.2s ease;
+}
+
+header p{
+    font-size:1.1rem;
+    opacity:0.9;
+}
+
+/* SECCIONES */
+section{
+    max-width:1000px;
+    margin:80px auto;
+    padding:0 20px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 0.8s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h2{
+    color:var(--primary);
+    margin-bottom:20px;
+    font-size:1.8rem;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    margin-bottom:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition:all 0.4s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+/* BOTÓN VOLVER */
+#backToTop{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:var(--secondary);
+    color:white;
+    border:none;
+    padding:14px 18px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    display:none;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:all 0.3s ease;
+}
+
+#backToTop:hover{
+    transform:scale(1.1);
+}
+
+/* ANIMACIÓN HEADER */
+@keyframes fadeDown{
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    header h1{
+        font-size:1.8rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Centro de Conocimiento e Impacto blueEnergy</h1>
+    <p>Plataforma de Capitalización – Más de 21 años generando impacto en la Costa Caribe Sur</p>
+</header>
+
+<section>
+    <h2>¿Qué es la Plataforma?</h2>
+    <div class="card">
+        <p>
+        La Plataforma de Capitalización de blueEnergy Nicaragua es el espacio donde organizamos, analizamos y compartimos más de 21 años de experiencia trabajando con comunidades vulnerables en la Costa Caribe Sur.
+        </p>
+        <br>
+        <p>
+        No es únicamente una vitrina de proyectos.  
+        Es un sistema estructurado de memoria institucional y aprendizaje estratégico.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>¿Por qué existe esta plataforma?</h2>
+
+    <div class="card">
+        <h3>1️⃣ Transparencia y confianza</h3>
+        <p>Construimos una relación honesta con nuestros socios, donantes y comunidades compartiendo:</p>
+        <ul>
+            <li>Resultados e impacto medido</li>
+            <li>Procesos de implementación</li>
+            <li>Desafíos enfrentados</li>
+            <li>Evolución institucional a lo largo del tiempo</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>2️⃣ Orientación estratégica internacional</h3>
+        <p>La experiencia acumulada en Nicaragua no se queda en Nicaragua. Identificamos:</p>
+        <ul>
+            <li>Buenas prácticas transferibles</li>
+            <li>Condiciones de éxito replicables</li>
+            <li>Factores de riesgo a anticipar</li>
+            <li>Adaptaciones necesarias según el contexto</li>
+        </ul>
+        <p><strong>Transposable a:</strong> Modelos de desarrollo comunitario, resiliencia climática, fortalecimiento institucional.</p>
+    </div>
+
+    <div class="card">
+        <h3>3️⃣ Contribución al modelo Open Source Impact</h3>
+        <p>El conocimiento es más poderoso cuando se comparte. Documentamos:</p>
+        <ul>
+            <li>Metodologías probadas en campo</li>
+            <li>Tecnologías implementadas</li>
+            <li>Procesos de trabajo comunitario</li>
+            <li>Herramientas técnicas</li>
+            <li>Sistemas de monitoreo y evaluación</li>
+        </ul>
+        <p>
+        Esto convierte lo aprendido en Nicaragua en un recurso estratégico para organizaciones de desarrollo sostenible en todo el mundo.
+        </p>
+    </div>
+</section>
+
+<button id="backToTop">↑</button>
+
+<script>
+// Animación al hacer scroll
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.15 });
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+
+// Botón volver arriba
+const btn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    if(window.scrollY > 400){
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+});
+
+btn.addEventListener("click", () => {
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+});
+</script>
+
+</body>
+</html>
